@@ -5,13 +5,9 @@ import java.util.Scanner;
 
 public class AddressBook {
     public static Scanner scan = new Scanner(System.in);
-
     public ArrayList<ContactDetails> contactList  = new ArrayList<>();
 
-   public ArrayList<ContactDetails> contactList(ContactDetails contactdetails) {
-        contactList.add(contactdetails);
-        return contactList;
-    }
+ 
     public void addContactDetails(){
         System.out.println("Welcome to  Address Book program.");
 
@@ -121,11 +117,9 @@ public class AddressBook {
                 break;
             }
         }
-        if(flag==1)
-            return true;
-        else
-            return false;
+        return flag == 1;
     }
+
     public boolean deleteContact(String name){
        int flag = 0;
        for (ContactDetails contact: contactList){
@@ -135,12 +129,6 @@ public class AddressBook {
                break;
            }
        }
-       if (flag==1) {
-           return true;
-       }
-       else {
-               return false;
-
-       }
+        return flag == 1;
     }
 }
