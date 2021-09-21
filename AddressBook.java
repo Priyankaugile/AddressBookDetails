@@ -9,13 +9,11 @@ public class AddressBook {
     public ArrayList<ContactDetails> contactList ;
     public HashMap<String, ArrayList<ContactDetails>> personByState;
     public HashMap<String, ArrayList<ContactDetails>> personByCity;
-
     public AddressBook() {
         personByCity = new HashMap<String, ArrayList<ContactDetails>>();
         personByState = new HashMap<String, ArrayList<ContactDetails>>();
         contactList = new ArrayList<>();
     }
-
     // Add Contact Details
     public void addContactDetails(){
         System.out.println("Enter the contact details:");
@@ -45,10 +43,9 @@ public class AddressBook {
         personByState.get(state).add(contactDetails);
 
         if(!personByCity.containsKey(city)){
-            personByCity.put(city,new ArrayList<ContactDetails>());
+            personByCity.put(city,new ArrayList<>());
         }
         personByCity.get(city).add(contactDetails);
-
     }
 
     // Edit Contact Details
@@ -59,6 +56,7 @@ public class AddressBook {
         {
             if(contact.getFirstName().equals(Name))
             {
+
                 System.out.println("Select an option to edit\n"
                         +"1] First Name\n"
                         +"2] Last Name\n"
@@ -129,14 +127,12 @@ public class AddressBook {
                         break;
                     }
                 }
-
                 flag = 1;
                 break;
             }
         }
         return flag == 1;
     }
-
     //	Display Contact
     public boolean Display(String Name)
     {
@@ -152,7 +148,6 @@ public class AddressBook {
         }
         return flag == 1;
     }
-
     //	Display Address Book
     public boolean DisplayAddressBook(String Name)
     {
@@ -163,7 +158,6 @@ public class AddressBook {
         }
         return flag == 1;
     }
-
     // Delete Contact Details
     public boolean deleteContact(String name) {
         int flag = 0;
@@ -178,7 +172,6 @@ public class AddressBook {
         }
         return flag == 1;
     }
-
     // Check Duplicate Entry
     public void checkDuplicate() {
         Set<String> ContactSet = new HashSet<>();
@@ -188,7 +181,6 @@ public class AddressBook {
             System.out.println("The Duplicate Contact is: " + contact.getFirstName() + " " + contact.getLastName());
         }
     }
-
     // Get Person Name by State
     public void getPersonNameByState(String State) {
         List<ContactDetails> list  = contactList.stream().filter(p ->p.getState().equals(State)).collect(Collectors.toList());
@@ -197,7 +189,6 @@ public class AddressBook {
             System.out.println("Last Name: "+contact.getLastName());
         }
     }
-
     // Get Person Name by city
     public void getPersonNameByCity(String cityName) {
         List<ContactDetails> list  = contactList.stream().filter(p ->p.getCity().equals(cityName)).collect(Collectors.toList());
