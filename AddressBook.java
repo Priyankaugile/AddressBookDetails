@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBook {
-    public static Scanner scan = new Scanner(System.in);
+    public static Scanner scan= new Scanner(System.in);
 
     public ArrayList<ContactDetails> contactList ;
     public HashMap<String, ArrayList<ContactDetails>> personByState;
@@ -17,28 +17,29 @@ public class AddressBook {
     // Add Contact Details
     public void addContactDetails(){
         System.out.println("Enter the contact details:");
-        System.out.println("Enter First Name");
+        System.out.println("1 Enter First Name");
         String firstName = scan.next();
-        System.out.println("Enter last Name");
+        checkDuplicate();
+        System.out.println("2 Enter last Name");
         String lastName = scan.next();
-        System.out.println("Enter Address ");
+        System.out.println("3 Enter Address ");
         String address = scan.next();
-        System.out.println("Enter City ");
+        System.out.println("4 Enter City ");
         String city = scan.next();
-        System.out.println("Enter State ");
+        System.out.println("5 Enter State ");
         String state = scan.next();
-        System.out.println("Enter  Email ");
+        System.out.println("6 Enter  Email ");
         String email = scan.next();
-        System.out.println("Enter phone Number");
+        System.out.println("7 Enter phone Number");
         String phoneNumber = scan.next();
-        System.out.println("Enter Zip code");
+        System.out.println("8 Enter Zip code");
         String zip = scan.next();
 
         ContactDetails contactDetails = new ContactDetails(firstName, lastName, address, city, state, email, phoneNumber, zip);
         contactList.add(contactDetails);
         System.out.println(contactDetails);
         if(!personByState.containsKey(state)){
-            personByState.put(state,new ArrayList<ContactDetails>());
+            personByState.put(state,new ArrayList<>());
         }
         personByState.get(state).add(contactDetails);
 
@@ -46,8 +47,8 @@ public class AddressBook {
             personByCity.put(city,new ArrayList<>());
         }
         personByCity.get(city).add(contactDetails);
-    }
 
+    }
     // Edit Contact Details
     public boolean editContactDetails(String Name)
     {
@@ -56,16 +57,15 @@ public class AddressBook {
         {
             if(contact.getFirstName().equals(Name))
             {
-
                 System.out.println("Select an option to edit\n"
-                        +"1] First Name\n"
-                        +"2] Last Name\n"
-                        +"3] Address\n"
-                        +"4] City\n"
-                        +"5] State\n"
-                        +"6] Email"
-                        +"7] phone Number\n"
-                        +"8] ZIP code\n");
+                        +"1 First Name\n"
+                        +"2 Last Name\n"
+                        +"3 Address\n"
+                        +"4 City\n"
+                        +"5 State\n"
+                        +"6 Email"
+                        +"7 phone Number\n"
+                        +"8 ZIP code\n");
 
                 int choice = scan.nextInt();
                 switch(choice)
@@ -101,7 +101,7 @@ public class AddressBook {
                     case 5:
                     {
                         System.out.println("Enter State: ");
-                        String state =scan.next();
+                        String state = scan.next();
                         contact.setState(state);
                         break;
                     }
@@ -149,13 +149,11 @@ public class AddressBook {
         return flag == 1;
     }
     //	Display Address Book
-    public boolean DisplayAddressBook(String Name)
+    public boolean DisplayAddressBook()
     {
         int flag = 0;
-        for (int i = 0; i < contactList.size(); i++) {
-            System.out.println(contactList);
-            flag = 1;
-        }
+        System.out.println(contactList);
+        flag = 1;
         return flag == 1;
     }
     // Delete Contact Details
