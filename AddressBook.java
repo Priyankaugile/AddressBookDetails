@@ -1,13 +1,16 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     public static Scanner scan = new Scanner(System.in);
     public ArrayList<ContactDetails> contactList  = new ArrayList<>();
 
- 
+    // Add Contact Details
     public void addContactDetails(){
         System.out.println("Welcome to  Address Book program.");
 
@@ -31,6 +34,8 @@ public class AddressBook {
         ContactDetails contactDetails = new ContactDetails(firstName,lastName,address,city,state,email,phoneNumber,zip);
         contactDetails.add(contactDetails);
     }
+
+    // Edit Contact Details
     public boolean editContactDetails(String Name)
     {
         int flag = 0;
@@ -120,6 +125,7 @@ public class AddressBook {
         return flag == 1;
     }
 
+    // Delete Contact Details
     public boolean deleteContact(String name){
        int flag = 0;
        for (ContactDetails contact: contactList){
@@ -130,5 +136,14 @@ public class AddressBook {
            }
        }
         return flag == 1;
+    }
+    // Check Duplicate Entry
+    public void checkDuplicate() {
+        Set<String> ContactSet = new HashSet<>();
+        Set<ContactDetails> filterSet = contactList.stream().filter(n -> !ContactSet.add(n.getFirstName())).collect(Collectors.toSet());
+
+        for (ContactDetails contact : filterSet) {
+            System.out.println("The Duplicate Contact is: " + contact.getFirstName() + " " + contact.getLastName());
+        }
     }
 }
