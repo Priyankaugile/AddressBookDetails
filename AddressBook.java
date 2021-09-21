@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class AddressBook {
-    public static Scanner scan= new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
 
     public ArrayList<ContactDetails> contactList ;
     public HashMap<String, ArrayList<ContactDetails>> personByState;
@@ -39,12 +39,12 @@ public class AddressBook {
         contactList.add(contactDetails);
         System.out.println(contactDetails);
         if(!personByState.containsKey(state)){
-            personByState.put(state,new ArrayList<>());
+            personByState.put(state,new ArrayList<ContactDetails>());
         }
         personByState.get(state).add(contactDetails);
 
         if(!personByCity.containsKey(city)){
-            personByCity.put(city,new ArrayList<>());
+            personByCity.put(city,new ArrayList<ContactDetails>());
         }
         personByCity.get(city).add(contactDetails);
 
