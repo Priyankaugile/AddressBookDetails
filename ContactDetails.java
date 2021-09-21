@@ -7,8 +7,8 @@ public class ContactDetails {
     private String city;
     private String state;
     private String email;
-    private int zip;
-    private long phoneNumber ;
+    private String zip;
+    private String phoneNumber ;
 
     public ContactDetails(String firstName, String lastName, String address, String city, String state, String email, String phoneNumber, String zip) {
     }
@@ -53,19 +53,19 @@ public class ContactDetails {
         this.state = state;
     }
 
-    public int getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -91,6 +91,6 @@ public class ContactDetails {
                 '}';
     }
 
-    public void add(ContactDetails contactDetails) {
+   public void add(ContactDetails contactDetails) {
     }
 }
