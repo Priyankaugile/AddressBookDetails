@@ -1,18 +1,19 @@
 package com.addressbook;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
     public static Scanner scan = new Scanner(System.in);
-    private static AddressBook addressBook = new AddressBook();
+    private static final AddressBook addressBook = new AddressBook();
     public Map<String,AddressBook> addressBookListMap = new HashMap<>();
     private String addressBookName;
 
     public void addAddressBook(String bookName){
-        boolean flag = true;
 
+        boolean flag = true;
         while(flag) {
             System.out.println("Select an option to select\n"
                     +"1] Add Contact\n"
@@ -26,6 +27,7 @@ public class AddressBookMain {
             switch (option)
             {
                 case 1:
+
                     System.out.println("enter no of contacts to be added");
                     int noOfContacts = scan.nextInt();
                     for(int i = 0; i < noOfContacts; i++) {
@@ -45,6 +47,7 @@ public class AddressBookMain {
                     } else {
                         System.out.println(" Cannot be Displayed");
                     }
+
                     break;
 
                 case 3:
@@ -57,8 +60,8 @@ public class AddressBookMain {
                     } else {
                         System.out.println("List Cannot be Edited");
                     }
-                    break;
 
+                    break;
                 case 4:
                     System.out.println("Enter the Contact to be deleted:");
                     String firstName = scan.next();
@@ -69,7 +72,6 @@ public class AddressBookMain {
                         System.out.println("List Cannot be Deleted");
                     }
                     break;
-
                 case 5:
                     flag =false;
                     break;
@@ -78,7 +80,6 @@ public class AddressBookMain {
     }
 
     public static void main(String[] args) {
-
         System.out.println("Welcome to the Address Book  System ");
         AddressBookMain addressBookMain = new AddressBookMain();
         boolean flag =true;
@@ -89,11 +90,13 @@ public class AddressBookMain {
                     +"2] Find Duplicate Entry in Address Book\n"
                     +"3]Search Contact from a city\n"
                     +"4]Search Contact from a State\n"
-                    +"5]Exit\n"
+                    +"5]View contact By State Using State\n"
+                    +"6]View Contact by city Using City\n"
+                    +"7]Display AddressBook\n"
+                    +"8]Exit\n"
                     + "Enter your Choice\n");
             int option = scan.nextInt();
             switch (option){
-
                 case 1: {
                     System.out.println("Enter the Name of Address Book: ");
                     String addressBookName = scan.next();
@@ -105,46 +108,92 @@ public class AddressBookMain {
                         break;
                     }
                 }
-
                 case 2:
                     for (Map.Entry<String, AddressBook> entry : addressBookMain.addressBookListMap.entrySet()) {
                         AddressBook value = entry.getValue();
                         System.out.println("Address Book Name: " + entry.getKey());
                         value.checkDuplicate();
                     }
-
                 case 3:
                     System.out.println("Enter Name of City: ");
                     String CityName = scan.next();
                     addressBookMain.searchPersonByCity(CityName);
                     break;
 
-                case 4:{
+                case 4:
                     System.out.println("Enter Name of State: ");
                     String StateName = scan.next();
                     addressBookMain.searchPersonByState(StateName);
                     break;
-                }
+
+
                 case 5:
+                    System.out.println("Enter Name of State: ");
+                    String state = scan.next();
+                    addressBookMain.viewPersonByState(state);
+                    break;
+
+                case 6:
+                    System.out.println("Enter Name of City: ");
+                    String city = scan.next();
+                    addressBookMain.viewPersonByCity(city);
+                    break;
+
+
+                case 7:
+                    System.out.println("Enter the Person First name to Display ");
+                    String Name = scan.next();
+
+                    boolean list = addressBook.DisplayAddressBook(Name);
+                    if (list) {
+                        System.out.println("Displayed the Address Book");
+                    } else {
+                        System.out.println(" Cannot be Displayed");
+                    }
+
+                    break;
+                case 8:
                     flag = false;
                     break;
             }
         }
     }
-
     private void searchPersonByState(String stateName) {
         for(Map.Entry<String,AddressBook> entry: addressBookListMap.entrySet()){
             AddressBook value = entry.getValue();
             System.out.println("The Address Book: "+entry.getKey());
             value.getPersonNameByState(stateName);
         }
-    }
 
+    }
     private void searchPersonByCity(String cityName) {
         for(Map.Entry<String,AddressBook> entry: addressBookListMap.entrySet()){
             AddressBook value = entry.getValue();
             System.out.println("The Address Book: "+entry.getKey());
             value.getPersonNameByCity(cityName);
+        }
+
+    }
+
+    private void viewPersonByState(String stateName) {
+        for (Map.Entry<String, AddressBook> entry : addressBookListMap.entrySet()) {
+            AddressBook value = entry.getValue();
+            ArrayList<ContactDetails> contacts = value.personByState.entrySet().stream().filter(findState -> findState.getKey().equals(stateName)).map(Map.Entry::getValue).findFirst().orElse(null);
+            assert contacts != null;
+            for(ContactDetails contact: contacts){
+                System.out.println("First Name: "+contact.getFirstName()+" Last Name: "+ contact.getLastName());
+            }
+        }
+    }
+
+    private void viewPersonByCity(String cityName) {
+        for (Map.Entry<String, AddressBook> entry : addressBookListMap.entrySet()) {
+            AddressBook value = entry.getValue();
+            ArrayList<ContactDetails> contacts = value.personByCity.entrySet().stream().filter(findCity -> findCity.getKey().equals(cityName)).map(Map.Entry::getValue).findFirst().orElse(null);
+            assert contacts != null;
+            for(ContactDetails contact: contacts){
+                System.out.println("First Name: "+contact.getFirstName()+" Last Name: "+ contact.getLastName());
+            }
         }
     }
 }

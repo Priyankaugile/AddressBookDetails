@@ -90,7 +90,4 @@ public class ContactDetails {
                 ", email='" + email + '\'' +
                 '}';
     }
-
-   public void add(ContactDetails contactDetails) {
-    }
 }
