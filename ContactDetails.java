@@ -6,9 +6,9 @@ public class ContactDetails {
     private String address;
     private String city;
     private String state;
-    private int zip;
-    private long phoneNumber;
     private String email;
+    private int zip;
+    private long phoneNumber ;
 
     public ContactDetails(String firstName, String lastName, String address, String city, String state, String email, String phoneNumber, String zip) {
     }
@@ -89,5 +89,8 @@ public class ContactDetails {
                 ", phoneNumber=" + phoneNumber +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void add(ContactDetails contactDetails) {
     }
 }
