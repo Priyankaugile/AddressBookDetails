@@ -5,14 +5,14 @@ import java.util.stream.Collectors;
 
 public class AddressBookMain {
     public static Scanner scan = new Scanner(System.in);
-    private static AddressBook addressBook = new AddressBook();
+    private static final AddressBook addressBook = new AddressBook();
     public  Map<String,AddressBook> addressBookListMap = new HashMap<>();
     private String addressBookName;
 
     public static void main(String[] args) {
         System.out.println("Welcome to the Address Book  System ");
         AddressBookMain addressBookMain = new AddressBookMain();
-        boolean flag = true;
+        boolean flag =true;
         while(flag)
         {
             System.out.println("Select an option\n"
@@ -119,9 +119,9 @@ public class AddressBookMain {
             }
         }
     }
+
     // Add Address Book
     public void addAddressBook(String bookName){
-
         boolean flag = true;
         while(flag) {
             System.out.println("Select an option to select\n"
@@ -131,11 +131,12 @@ public class AddressBookMain {
                     +"4 Delete Contact\n"
                     +"5 Exit\n"
                     + "Enter your Choice\n");
-            int option = scan.nextInt();
 
+            int option = scan.nextInt();
             switch (option)
             {
                 case 1:
+
                     System.out.println("enter no of contacts to be added");
                     int noOfContacts = scan.nextInt();
                     for(int i = 0; i < noOfContacts; i++) {
@@ -194,7 +195,6 @@ public class AddressBookMain {
             value.getPersonNameByState(stateName);
         }
     }
-
     // Search Person by city
     private void searchPersonByCity(String cityName) {
         for(Map.Entry<String,AddressBook> entry: addressBookListMap.entrySet()){
@@ -297,7 +297,6 @@ public class AddressBookMain {
             }
         }
     }
-
     private void sortByZipCode() {
         for (Map.Entry<String,AddressBook>entry:addressBookListMap.entrySet()){
             AddressBook value = entry.getValue();

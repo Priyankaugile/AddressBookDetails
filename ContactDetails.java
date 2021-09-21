@@ -10,7 +10,21 @@ public class ContactDetails {
     private String zip;
     private String phoneNumber ;
 
-    public ContactDetails(String firstName, String lastName, String address, String city, String state, String email, String phoneNumber, String zip) {
+    public ContactDetails(String firstName, String lastName, String address, String city, String state,
+                          String email, String phoneNumber, String zip) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAddress(address);
+        setCity(city);
+        setState(state);
+        setEmail(email);
+        setPhoneNumber(phoneNumber);
+        setZip(zip);
+
+    }
+
+    public ContactDetails() {
+
     }
 
     public String getFirstName() {
@@ -53,6 +67,14 @@ public class ContactDetails {
         this.state = state;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getZip() {
         return zip;
     }
@@ -68,26 +90,9 @@ public class ContactDetails {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
     public String toString() {
-        return "ContactsList{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip=" + zip +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                '}';
+        return "[First Name =" + firstName + ", Last Name ="
+                + lastName + ", Phone =" + phoneNumber + ", City =" + city
+                + ", State =" + state + ", Zip =" + zip + ", Email =" + email + "]";
     }
 }

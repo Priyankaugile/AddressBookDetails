@@ -152,10 +152,13 @@ public class AddressBook {
     public boolean DisplayAddressBook()
     {
         int flag = 0;
-        System.out.println(contactList);
-        flag = 1;
+        if(flag == 0) {
+            System.out.println(contactList);
+            flag = 1;
+        }
         return flag == 1;
     }
+
     // Delete Contact Details
     public boolean deleteContact(String name) {
         int flag = 0;
